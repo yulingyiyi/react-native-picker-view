@@ -1,5 +1,5 @@
 {
-  "name": "react-native-picker-view",
+  "name": "react-native-picker-view-urara",
   "version": "1.0.6",
   "description": "Cross platform Picker component for IOS and Android",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/surajitsarkar19/react-native-picker-view.git"
+    "url": "git+https://github.com/yulingyiyi/react-native-picker-view.git"
   },
   "keywords": [
     "NumberPicker",
@@ -20,7 +20,8 @@
 	"select",
 	"picker view",
 	"view",
-	"items"
+  "items",
+  "urara"
   ],
   "author": "Surajit Sarkar",
   "license": "MIT",

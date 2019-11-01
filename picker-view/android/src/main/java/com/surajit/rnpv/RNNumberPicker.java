@@ -43,7 +43,49 @@ public class RNNumberPicker extends NumberPicker {
         //disable the typing
         //enableNumberPickerManualEditing(this,false);
     }
+    public void configPicker(){
+        this.setNUmberPickerDividerHeight();
+        this.setNumberPickerTextColor(Resources.getSystem().getColor(android.R.color.black));
+    }
+    public void setNUmberPickerDividerHeight(){
+        Field[] pickerFields = NumberPicker.class.getDeclaredFields();
+        for (Field pf : pickerFields) {
+            if (pf.getName().equals("mSelectionDividerHeight")) {
+                pf.setAccessible(true);
+                try {
+                    int result = 1;
+                    pf.set(this, 1);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+    }
 
+    public void setNumberPickerTextColor(int color) {
+        boolean result = false;
+        final int count = this.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View child = this.getChildAt(i);
+            if (child instanceof EditText) {
+                try {
+                    Field selectorWheelPaintField = NumberPicker.class
+                            .getDeclaredField("mSelectorWheelPaint");
+                    selectorWheelPaintField.setAccessible(true);
+                    ((Paint) selectorWheelPaintField.get(this)).setColor(color);
+                    ((EditText) child).setTextColor(color);
+                    this.invalidate();
+                } catch (NoSuchFieldException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
     public void enableNumberPickerManualEditing(NumberPicker numPicker, boolean enable) {
         int childCount = numPicker.getChildCount();
 
